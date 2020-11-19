@@ -1,0 +1,35 @@
+<!-- {{ request.user.is_authenticated }} -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JUIT Forums</title>
+	</head>
+<body>
+
+	<div class="post-form">
+		{% if new_post %}
+		<div class="alert alert-success" role="alert">
+          Your post is awaiting moderation
+        </div>
+        {% else %}
+        <h3>Leave a post</h3>
+        <form method="post" style="margin-top: 1:3em;">
+        	{{ post_form.as_p}}
+        	{% csrf_token %}
+        	<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+
+	<br/><br/>
+	{% for i in list %}
+	<div class="card" style="padding: 10px;">
+		{{i.created_date}}
+		<hr/>
+		{{i.text}}
+		<br/>
+	</div>
+	{% endfor%}
+	</body>
+	
+</html>
